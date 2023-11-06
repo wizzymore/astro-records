@@ -1,0 +1,57 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Player from "../components/Player";
+import "../styles/transitions.css";
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="turbo-cache-control" content="no-cache" />
+    <title>{title}</title>
+    <script>
+      import * as Turbo from "@hotwired/turbo";
+
+      Turbo.start();
+
+      document.addEventListener("turbo:load", () => {
+        document.addEventListener(
+          "turbo:before-render",
+          (event) => {
+            if (document.startViewTransition) {
+              event.preventDefault();
+              document.startViewTransition(() => {
+                event.detail.resume();
+              });
+            }
+          },
+          {
+            once: true,
+          },
+        );
+      });
+    </script>
+    <!-- <ViewTransitions /> -->
+  </head>
+  <body
+    class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal"
+  >
+    <Header />
+    <slot />
+    <Footer />
+    <div id="audio-player" data-turbo-permanent>
+      <Player client:only data-turbo-track="reload" />
+    </div>
+  </body>
+</html>

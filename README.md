@@ -1,6 +1,6 @@
 # Astro View Transitions + Persistent Island Demo
 
-### 👉🏽 [Live Demo](https://astro-records.pages.dev/)
+### 👉🏽 [Live Demo](https://astro-records-rose.vercel.app/)
 
 ![Screenshot](./screenshot.png)
 

@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
-import { isPlaying, currentTrack } from "./state";
-import { computed } from "nanostores";
 import { useStore } from "@nanostores/react";
+import { useEffect, useState } from "react";
+import { currentTrack, isPlaying } from "./state";
 
 export default function Record({
   albumId,
@@ -32,7 +31,7 @@ export default function Record({
         width="400"
         height="400"
         className="block rounded-md tag-album-cover relative z-10 bg-white"
-        style={{ viewTransitionName: `record-${albumId};` }}
+        style={{ viewTransitionName: `record-${albumId}` }}
       />
       <img
         src="/vynil-lp.webp"
@@ -42,7 +41,7 @@ export default function Record({
           "absolute top-0 opacity-0 vynil-image vynil-animation-in" +
           (isPlayingCurrentRecord ? "-spinning" : "")
         }
-        style={{ viewTransitionName: `vinyl-${albumId};` }}
+        style={{ viewTransitionName: `vinyl-${albumId}` }}
       />
     </div>
   );
